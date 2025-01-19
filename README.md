@@ -2,7 +2,7 @@
 Sample base package for Cactusforce '25 demonstration
 
 ## Setup
-This project uses CumulusCI as the build tool. [Set up CumulusCI](https://cumulusci.readthedocs.io/en/latest/get-started.html).
+This project uses CumulusCI as the build tool. [Set up the Salesforce CLI and CumulusCI](https://cumulusci.readthedocs.io/en/latest/get-started.html).
 
 Connect CumulusCI to the GitHub account used to access this repository.
 `cci service connect github mygithub`
