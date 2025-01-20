@@ -3,7 +3,6 @@ on:
   workflow_dispatch:
   pull_request:
     types: [opened, synchronize, reopened]
-
 env:
   CUMULUSCI_SERVICE_github: ${{ secrets.CUMULUSCI_SERVICE_github }}
 
