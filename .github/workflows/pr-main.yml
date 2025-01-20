@@ -14,7 +14,7 @@ jobs:
     steps:
       # Checkout the source code
       - name: "Checkout source code"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       # Install Salesforce CLI & Authorize DevHub
       - name: "Install Salesforce CLI"
@@ -29,7 +29,7 @@ jobs:
 
       # Install CumulusCI & Dependencies
       - name: Set up Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v5
         with:
           python-version: "3.8"
       - name: Install CumulusCI
@@ -55,7 +55,7 @@ jobs:
 
       # Save code coverage for next job
       - name: "Make report available"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: apex-code-coverage
           path: tests/apex/test-result-codecoverage.json # Wildcards can be used to filter the files copied into the container. See: https://github.com/actions/upload-artifact
@@ -64,20 +64,20 @@ jobs:
     needs: validate-build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
       # Download the code coverage report
       - name: "Download coverage result from previous job"
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: apex-code-coverage
           path: tests/apex
 
       # Use Sonar Cloud action with sonar-project.properties to scan project
       - name: "Sonar Cloud scan"
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
